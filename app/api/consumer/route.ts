@@ -20,7 +20,7 @@ const knexInstance = knex({
 const queueDriver = new CrockroachQueueDriver(knexInstance, "pgmq");
 
 export async function POST(request: Request) {
-  const body = await request.json();
+  const body = request.body;
 
   const consumer = new Consumer(
     {
