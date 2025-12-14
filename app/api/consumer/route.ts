@@ -35,10 +35,7 @@ export async function POST(request: Request) {
       totalRetriesBeforeSendToDlq: 2,
     },
     async function (message: { [key: string]: any }, signal): Promise<void> {
-      await axios.post(
-        "https://hello-world-do-template.tiagorosadacost.workers.dev",
-        { message: message }
-      );
+      await axios.post(process.env.CONSUMER_URL!, { message: message });
     },
     queueDriver
   );
