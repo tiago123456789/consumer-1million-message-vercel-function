@@ -54,7 +54,7 @@ export async function GET(request: Request) {
   for (const worker of totalWorkers) {
     console.log("passed on here");
     console.log(worker);
-    axios.post("http://localhost:3000/api/consumer", worker);
+    axios.post(process.env.CONSUMER_URL!, worker);
   }
   return Response.json({ ok: true });
 }
