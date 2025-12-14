@@ -53,10 +53,7 @@ export async function GET(request: Request) {
 
   for (const worker of totalWorkers) {
     console.log("passed on here");
-    axios.post(
-      "https://tiagoaccount2--e6580a46d8ff11f085ee42dde27851f2.web.val.run",
-      worker
-    );
+    axios.post(process.env.CRONJOB_URL!, worker);
   }
   return Response.json({ ok: true });
 }

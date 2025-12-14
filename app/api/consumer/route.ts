@@ -3,7 +3,6 @@ import {
   CrockroachQueueDriver,
 } from "crockroachdb-queue-producer-consumer";
 import knex from "knex";
-import client from "pg";
 import axios from "axios";
 
 const knexInstance = knex({
