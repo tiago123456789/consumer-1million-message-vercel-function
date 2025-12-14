@@ -20,8 +20,8 @@ const knexInstance = knex({
 const queueDriver = new CrockroachQueueDriver(knexInstance, "pgmq");
 
 export async function POST(request: Request) {
-  const body = request.body;
-
+  const body = await request.json();
+  console.log("body", body);
   const consumer = new Consumer(
     {
       queueName: "jobs",
@@ -34,7 +34,9 @@ export async function POST(request: Request) {
       totalRetriesBeforeSendToDlq: 2,
     },
     async function (message: { [key: string]: any }, signal): Promise<void> {
-      await axios.post(process.env.CONSUMER_URL!, { message: message });
+      console.log("Processing message =>", message);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await axios.post(!, { message: message });
     },
     queueDriver
   );

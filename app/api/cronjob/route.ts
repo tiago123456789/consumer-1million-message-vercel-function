@@ -53,10 +53,8 @@ export async function GET(request: Request) {
 
   for (const worker of totalWorkers) {
     console.log("passed on here");
-    axios.post(
-      "https://consumer-1million-message-vercel-fu.vercel.app/api/consumer",
-      worker
-    );
+    console.log(worker);
+    axios.post("http://localhost:3000/api/consumer", worker);
   }
   return Response.json({ ok: true });
 }
